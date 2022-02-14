@@ -3,9 +3,11 @@ package com.senthu.sample;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class AnagramCheck {
@@ -15,25 +17,25 @@ public class AnagramCheck {
 		List<List<Character>> preparedListOfCharacterSet = new ArrayList<>();
 		for (int count = 0; count < new Random().nextInt(10, 15); count++) {
 			List<Character> finalString = new ArrayList<>();
-			for (int element : new Random().ints(new Random().nextInt(3, 10), 97, 122).toArray()) {
+			for (int element : new Random().ints(new Random().nextInt(3, 9), 97, 122).toArray()) {
 				finalString.add((char) element);
 			}
 			preparedListOfCharacterSet.add(finalString);
 		}
 
-		List<String> returnValue = new ArrayList<>();
+		Set<String> returnValue = new HashSet<String>();
 		for (List<Character> characterSetList : preparedListOfCharacterSet) {
-			int randomInt = new Random().nextInt(1, 99999);
+			int randomInt = new Random().nextInt(1, preparedListOfCharacterSet.size());
 			returnValue.add(prepareStringFromCharacterArray(characterSetList));
 			if ((randomInt % 5) == 0) {
-				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 9));
+				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 10));
 			} else if ((randomInt % 4) == 0) {
-				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 3));
+				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 8));
 			} else if ((randomInt % 3) == 0) {
-				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 5));
+				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 6));
 			}
 		}
-		return returnValue;
+		return new ArrayList<String>(returnValue);
 	}
 
 	private static void getAnagramGroupCount(List<String> stringList) {
@@ -79,7 +81,7 @@ public class AnagramCheck {
 		return stringBuilder.toString();
 	}
 
-	private static void randomizeString(List<Character> listOfCharacters, List<String> returnValue, int randomLimit) {
+	private static void randomizeString(List<Character> listOfCharacters, Set<String> returnValue, int randomLimit) {
 		int randomInt = new Random().nextInt(1, randomLimit);
 		for (int index = 0; index < randomInt; index++) {
 			Collections.shuffle(listOfCharacters);
