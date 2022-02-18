@@ -23,7 +23,7 @@ public class AnagramCheck {
 			preparedListOfCharacterSet.add(finalString);
 		}
 
-		Set<String> returnValue = new HashSet<String>();
+		Set<String> returnValue = new HashSet<>();
 		for (List<Character> characterSetList : preparedListOfCharacterSet) {
 			int randomInt = new Random().nextInt(1, preparedListOfCharacterSet.size());
 			returnValue.add(prepareStringFromCharacterArray(characterSetList));
@@ -35,7 +35,7 @@ public class AnagramCheck {
 				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 6));
 			}
 		}
-		return new ArrayList<String>(returnValue);
+		return new ArrayList<>(returnValue);
 	}
 
 	private static void getAnagramGroupCount(List<String> stringList) {

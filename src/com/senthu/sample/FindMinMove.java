@@ -13,14 +13,21 @@ public class FindMinMove {
 		printArray("Original", newArray);
 		printArray("Sorted  ", array);
 		for (int element : newArray) {
-			if (element == array[index])
+			if (element == array[index]) {
 				index++;
+			}
 		}
 		return array.length - index;
 	}
 
+	public static void main(String[] args) {
+		for (int i = 0; i < 10; i++) {
+			System.out.println(findMinMove(prepareList()));
+		}
+	}
+
 	private static Integer[] prepareList() {
-		HashSet<Integer> set = new HashSet<Integer>();
+		HashSet<Integer> set = new HashSet<>();
 		for (int element : new Random().ints(new Random().nextInt(5, 30), 1, 100).toArray()) {
 			set.add(element);
 		}
@@ -29,11 +36,5 @@ public class FindMinMove {
 
 	private static void printArray(String message, Integer[] array) {
 		System.out.println(message + " : " + Arrays.toString(array));
-	}
-
-	public static void main(String[] args) {
-		for (int i = 0; i < 10; i++) {
-			System.out.println(findMinMove(prepareList()));
-		}
 	}
 }
