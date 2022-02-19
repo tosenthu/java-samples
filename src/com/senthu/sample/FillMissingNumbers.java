@@ -26,6 +26,6 @@ public class FillMissingNumbers {
 			}
 		}
 		result.add(sortedArray[sortedArray.length - 1]);
-		System.out.println(result);
+		Utility.printArrayElements("Final Array", result.toArray());
 	}
 }
