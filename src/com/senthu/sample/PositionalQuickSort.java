@@ -2,10 +2,10 @@ package com.senthu.sample;
 
 public class PositionalQuickSort {
 
-	public static final Boolean ODD_POSITION_SORT = true;
+	public static final Boolean ODD_POSITION_SORT = false;
 
 	public static void main(String[] args) {
-		int[] arrayElements = Utility.generateRandomIntegerArray(15, 20, 10, 99);
+		int[] arrayElements = Utility.generateRandomIntegerArray(10, 20, 10, 99);
 		int arraySize = arrayElements.length;
 		System.out.println("Before Quick Sort");
 		Utility.printArrayElements(arrayElements);
@@ -22,15 +22,17 @@ public class PositionalQuickSort {
 			}
 		}
 		quickSort(arrayElements, start, end);
-		System.out.println("After Quick Sort");
+		System.out.println("\nAfter Quick Sort");
 		Utility.printArrayElements(arrayElements);
 	}
 
 	public static void quickSort(int[] arrayElements, int startOfArray, int endOfArray) {
-		int step = 2;
+		
+		int step = 2; 
 		int leftIndex = startOfArray;
 		int rightIndex = endOfArray;
-		int middlePosition = (((endOfArray - startOfArray) / 2) * step) + startOfArray;
+		int middlePosition = (((endOfArray/step - startOfArray/step) / 2) * step) + startOfArray;
+		System.out.println("Start : " + startOfArray + ", End : " + endOfArray + ", Middle :" + middlePosition);
 		int middleElement = arrayElements[middlePosition];
 		do {
 			while (arrayElements[leftIndex] < middleElement)
