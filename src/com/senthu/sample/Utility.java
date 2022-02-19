@@ -3,11 +3,11 @@ package com.senthu.sample;
 import java.util.Random;
 
 public class Utility {
-	public static int[] generateRandomIntegerArray(int sizeBound, int sizeLimit, int rangeBound, int rangeLimit) {
-		int arraySize = new Random().nextInt(sizeBound, sizeLimit);
+	public static int[] generateRandomIntegerArray(int sizeStartValue, int sizeEndValue, int rangeStartValue, int rangeEndValue) {
+		int arraySize = new Random().nextInt(sizeStartValue, sizeEndValue);
 		int[] arrayElements = new int[arraySize];
 		for (int i = 0; i < arraySize; i++) {
-			arrayElements[i] = new Random().nextInt(rangeBound, rangeLimit);
+			arrayElements[i] = new Random().nextInt(rangeStartValue, rangeEndValue);
 		}
 		return arrayElements;
 	}
