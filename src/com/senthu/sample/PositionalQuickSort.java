@@ -13,6 +13,7 @@ public class PositionalQuickSort {
 		if ((PositionalQuickSort.ODD_POSITION_SORT && ((arraySize % 2) == 0)) || ((arraySize % 2) != 0)) {
 			end--;
 		}
+		System.out.println("");
 		PositionalQuickSort.quickSort(arrayElements, start, end);
 		Utility.printArrayElements("After Quick Sort", arrayElements);
 	}

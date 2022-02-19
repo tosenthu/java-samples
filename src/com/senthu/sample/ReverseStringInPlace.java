@@ -3,7 +3,7 @@ package com.senthu.sample;
 public class ReverseStringInPlace {
 
 	public static void main(String[] args) {
-		String bigString = "  411 F Block Amrutha Value Apartments   Borewell Road Nallurhalli  ";
+		String bigString = "  The   Quick  Brown   Fox  Jumps   Over   THE  LaZy   dOg  ";
 		String smallString = "  Senthil   Kumar   M   R    ";
 		System.out.println(ReverseStringInPlace.reverseStringInPlace(bigString));
 		System.out.println(ReverseStringInPlace.reverseStringInPlace(smallString));
