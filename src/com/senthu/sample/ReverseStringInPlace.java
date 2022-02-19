@@ -39,8 +39,10 @@ public class ReverseStringInPlace {
 		endIndex--;
 		for (int i = 0; i < mid; i++) {
 			char temp = characterArray[endIndex];
-			characterArray[endIndex--] = characterArray[startIndex];
-			characterArray[startIndex++] = temp;
+			characterArray[endIndex] = characterArray[startIndex];
+			endIndex--;
+			characterArray[startIndex] = temp;
+			startIndex++;
 		}
 	}
 
