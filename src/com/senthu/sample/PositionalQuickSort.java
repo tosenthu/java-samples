@@ -26,16 +26,16 @@ public class PositionalQuickSort {
 		Utility.printArrayElements(arrayElements);
 	}
 
-	public static void quickSort(int[] arrayElements, int start, int end) {
+	public static void quickSort(int[] arrayElements, int startOfArray, int endOfArray) {
 		int step = 2;
-		int leftIndex = start;
-		int rightIndex = end;
-		int mid = (((end - start) / 2) * step) + start;
-		int midElement = arrayElements[mid];
+		int leftIndex = startOfArray;
+		int rightIndex = endOfArray;
+		int middlePosition = (((endOfArray - startOfArray) / 2) * step) + startOfArray;
+		int middleElement = arrayElements[middlePosition];
 		do {
-			while (arrayElements[leftIndex] < midElement)
+			while (arrayElements[leftIndex] < middleElement)
 				leftIndex += step;
-			while (arrayElements[rightIndex] > midElement)
+			while (arrayElements[rightIndex] > middleElement)
 				rightIndex -= step;
 			if (leftIndex <= rightIndex) {
 				Utility.swap(arrayElements, leftIndex, rightIndex);
@@ -43,9 +43,9 @@ public class PositionalQuickSort {
 				rightIndex -= step;
 			}
 		} while (leftIndex <= rightIndex);
-		if (start < rightIndex)
-			quickSort(arrayElements, start, rightIndex);
-		if (leftIndex < end)
-			quickSort(arrayElements, leftIndex, end);
+		if (startOfArray < rightIndex)
+			quickSort(arrayElements, startOfArray, rightIndex);
+		if (leftIndex < endOfArray)
+			quickSort(arrayElements, leftIndex, endOfArray);
 	}
 }
