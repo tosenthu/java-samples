@@ -26,13 +26,13 @@ public class AnagramCheck {
 		Set<String> returnValue = new HashSet<>();
 		for (List<Character> characterSetList : preparedListOfCharacterSet) {
 			int randomInt = new Random().nextInt(1, preparedListOfCharacterSet.size());
-			returnValue.add(prepareStringFromCharacterArray(characterSetList));
+			returnValue.add(AnagramCheck.prepareStringFromCharacterArray(characterSetList));
 			if ((randomInt % 5) == 0) {
-				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 10));
+				AnagramCheck.randomizeString(characterSetList, returnValue, new Random().nextInt(2, 10));
 			} else if ((randomInt % 4) == 0) {
-				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 8));
+				AnagramCheck.randomizeString(characterSetList, returnValue, new Random().nextInt(2, 8));
 			} else if ((randomInt % 3) == 0) {
-				randomizeString(characterSetList, returnValue, new Random().nextInt(2, 6));
+				AnagramCheck.randomizeString(characterSetList, returnValue, new Random().nextInt(2, 6));
 			}
 		}
 		return new ArrayList<>(returnValue);
@@ -42,7 +42,7 @@ public class AnagramCheck {
 		System.out.println(stringList);
 		Map<String, List<String>> characterSetStrings = new HashMap<>();
 		for (String element : stringList) {
-			String characterSetString = prepareCharacterSet(element);
+			String characterSetString = AnagramCheck.prepareCharacterSet(element);
 			List<String> groupList = characterSetStrings.getOrDefault(characterSetString, new ArrayList<String>());
 			groupList.add(element);
 			characterSetStrings.put(characterSetString, groupList);
@@ -54,7 +54,7 @@ public class AnagramCheck {
 	}
 
 	public static void main(String[] args) {
-		getAnagramGroupCount(generateRandomString());
+		AnagramCheck.getAnagramGroupCount(AnagramCheck.generateRandomString());
 	}
 
 	private static String prepareCharacterSet(String element) {
@@ -76,7 +76,7 @@ public class AnagramCheck {
 		Character[] characterArray = {};
 		characterArray = listOfCharacters.toArray(characterArray);
 		for (Character character : characterArray) {
-			stringBuilder.append(character.charValue());
+			stringBuilder.append(character);
 		}
 		return stringBuilder.toString();
 	}
@@ -85,7 +85,7 @@ public class AnagramCheck {
 		int randomInt = new Random().nextInt(1, randomLimit);
 		for (int index = 0; index < randomInt; index++) {
 			Collections.shuffle(listOfCharacters);
-			returnValue.add(prepareStringFromCharacterArray(listOfCharacters));
+			returnValue.add(AnagramCheck.prepareStringFromCharacterArray(listOfCharacters));
 		}
 	}
 }

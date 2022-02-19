@@ -1,15 +1,24 @@
 package com.senthu.sample;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Utility {
-	public static int[] generateRandomIntegerArray(int sizeStartValue, int sizeEndValue, int rangeStartValue, int rangeEndValue) {
+	public static int[] generateRandomIntArray(int sizeStartValue, int sizeEndValue, int rangeStartValue,
+			int rangeEndValue) {
 		int arraySize = new Random().nextInt(sizeStartValue, sizeEndValue);
 		int[] arrayElements = new int[arraySize];
 		for (int i = 0; i < arraySize; i++) {
 			arrayElements[i] = new Random().nextInt(rangeStartValue, rangeEndValue);
 		}
 		return arrayElements;
+	}
+
+	public static Integer[] generateRandomIntegerArray(int sizeStartValue, int sizeEndValue, int rangeStartValue,
+			int rangeEndValue) {
+		return Arrays
+				.stream(Utility.generateRandomIntArray(sizeStartValue, sizeEndValue, rangeStartValue, rangeEndValue))
+				.boxed().toArray(Integer[]::new);
 	}
 
 	public static void printArrayElements(int[] arrayElements) {
@@ -28,5 +37,4 @@ public class Utility {
 		arrayElements[start] = arrayElements[end];
 		arrayElements[end] = temp;
 	}
-
 }

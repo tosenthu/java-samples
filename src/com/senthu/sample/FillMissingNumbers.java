@@ -7,7 +7,7 @@ import java.util.List;
 public class FillMissingNumbers {
 	public static void main(String[] args) {
 
-		int[] originalArray = Utility.generateRandomIntegerArray(5, 15, 1, 20);
+		int[] originalArray = Utility.generateRandomIntArray(5, 15, 1, 20);
 		// Sorted : {1, 3, 4,7}
 		// Output : {1, -1, 3, 4, -1, -1, 7}
 

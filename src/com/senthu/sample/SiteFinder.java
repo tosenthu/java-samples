@@ -104,7 +104,7 @@ public class SiteFinder {
 			String siteName = String.format("Site-%04d", (i + 1));
 			Set<String> subnetPerSite = new HashSet<>();
 			for (int j = 0; j < new Random().nextInt(10, 1000); j++) {
-				String subnet = generateRandomSubnet();
+				String subnet = SiteFinder.generateRandomSubnet();
 				if (!allSubnets.contains(subnet)) {
 					subnetPerSite.add(subnet);
 				}
@@ -130,7 +130,7 @@ public class SiteFinder {
 		}
 
 		for (int i = 0; i < new Random().nextInt(50, 100); i++) {
-			String generatedIPAddress = generateRandomIPAddress();
+			String generatedIPAddress = SiteFinder.generateRandomIPAddress();
 			IPv4Address ipAddress = new IPv4Address(generatedIPAddress);
 			String subnet8IP = String.format("%03d%03d%03d%03d", ipAddress.getOctet1(), 0, 0, 0);
 			if (startIPAddressAndSiteMap.containsKey(subnet8IP)) {

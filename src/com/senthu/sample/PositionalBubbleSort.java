@@ -2,7 +2,7 @@ package com.senthu.sample;
 
 public class PositionalBubbleSort {
 
-	private static final Boolean ODD_POSITION_SORT = false;
+	private static final Boolean ODD_POSITION_SORT = true;
 
 	private static void bubbleSort(boolean odd, int[] arrayElements) {
 		for (int i = odd ? 0 : 1; i < (arrayElements.length - 1); i += 2) {
@@ -15,10 +15,10 @@ public class PositionalBubbleSort {
 	}
 
 	public static void main(String[] args) {
-		int[] arrayElements = Utility.generateRandomIntegerArray(15, 20, 10, 99);
+		int[] arrayElements = Utility.generateRandomIntArray(15, 20, 10, 99);
 		System.out.println("Before Bubble Sort");
 		Utility.printArrayElements(arrayElements);
-		bubbleSort(ODD_POSITION_SORT, arrayElements);
+		PositionalBubbleSort.bubbleSort(PositionalBubbleSort.ODD_POSITION_SORT, arrayElements);
 		System.out.println("After Bubble Sort");
 		Utility.printArrayElements(arrayElements);
 	}

@@ -19,8 +19,10 @@ public class FindMinMove {
 	}
 
 	public static void main(String[] args) {
+		
 		for (int i = 0; i < 10; i++) {
-			System.out.println(findMinMove(Utility.generateRandomIntegerArray(5, 30, 1, 100)));
+			System.out.println("\n");
+			System.out.println(FindMinMove.findMinMove(Utility.generateRandomIntArray(5, 30, 1, 100)));
 		}
 	}
 }
