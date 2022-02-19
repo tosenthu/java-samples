@@ -11,10 +11,10 @@ public class FillMissingNumbers {
 		// Sorted : {1, 3, 4,7}
 		// Output : {1, -1, 3, 4, -1, -1, 7}
 
-		Utility.printArrayElements(originalArray);
+		Utility.printArrayElements("Original Array", originalArray);
 		int[] sortedArray = originalArray.clone();
 		Arrays.sort(sortedArray);
-		Utility.printArrayElements(sortedArray);
+		Utility.printArrayElements("Sorted Array", sortedArray);
 		List<Integer> result = new ArrayList<>();
 
 		for (int index = 0; index < (sortedArray.length - 1); index++) {

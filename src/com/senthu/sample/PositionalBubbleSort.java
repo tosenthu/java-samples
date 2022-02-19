@@ -16,10 +16,8 @@ public class PositionalBubbleSort {
 
 	public static void main(String[] args) {
 		int[] arrayElements = Utility.generateRandomIntArray(15, 20, 10, 99);
-		System.out.println("Before Bubble Sort");
-		Utility.printArrayElements(arrayElements);
+		Utility.printArrayElements("Before Bubble Sort", arrayElements);
 		PositionalBubbleSort.bubbleSort(PositionalBubbleSort.ODD_POSITION_SORT, arrayElements);
-		System.out.println("After Bubble Sort");
-		Utility.printArrayElements(arrayElements);
+		Utility.printArrayElements("After Bubble Sort", arrayElements);
 	}
 }

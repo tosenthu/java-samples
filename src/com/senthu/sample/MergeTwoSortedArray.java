@@ -24,12 +24,12 @@ public class MergeTwoSortedArray {
 		Arrays.sort(firstHalfArray, Collections.reverseOrder());
 		Arrays.sort(secondHalfArray);
 
-		MergeTwoSortedArray.printArray("First Half", firstHalfArray);
-		MergeTwoSortedArray.printArray("Second Half", secondHalfArray);
+		Utility.printArrayElements("First Half", firstHalfArray);
+		Utility.printArrayElements("Second Half", secondHalfArray);
 
 		Integer[] arrayElements = MergeTwoSortedArray.copyArrays(firstHalfArray, secondHalfArray);
 
-		MergeTwoSortedArray.printArray("Before Sorting", arrayElements);
+		Utility.printArrayElements("Before Sorting", arrayElements);
 		int middleElement = firstHalfArray.length;
 		int leftIndex = middleElement - 1;
 		int rightIndex = middleElement;
@@ -54,13 +54,6 @@ public class MergeTwoSortedArray {
 			result[resultIndex++] = arrayElements[rightIndex++];
 		}
 
-		MergeTwoSortedArray.printArray("After Sorting", result);
+		Utility.printArrayElements("After Sorting", result);
 	}
-
-	private static void printArray(String message, Integer[] firstHalfArray) {
-		System.out.println(message);
-		System.out.println(Arrays.toString(firstHalfArray));
-		System.out.println("\n");
-	}
-
 }

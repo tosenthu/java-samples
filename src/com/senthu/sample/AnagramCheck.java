@@ -16,17 +16,13 @@ public class AnagramCheck {
 
 		List<List<Character>> preparedListOfCharacterSet = new ArrayList<>();
 		for (int count = 0; count < new Random().nextInt(10, 15); count++) {
-			List<Character> finalString = new ArrayList<>();
-			for (int element : new Random().ints(new Random().nextInt(3, 9), 97, 122).toArray()) {
-				finalString.add((char) element);
-			}
-			preparedListOfCharacterSet.add(finalString);
+			preparedListOfCharacterSet.add(Utility.generateString(3, 10));
 		}
 
 		Set<String> returnValue = new HashSet<>();
 		for (List<Character> characterSetList : preparedListOfCharacterSet) {
 			int randomInt = new Random().nextInt(1, preparedListOfCharacterSet.size());
-			returnValue.add(AnagramCheck.prepareStringFromCharacterArray(characterSetList));
+			returnValue.add(Utility.prepareStringFromCharacterArray(characterSetList));
 			if ((randomInt % 5) == 0) {
 				AnagramCheck.randomizeString(characterSetList, returnValue, new Random().nextInt(2, 10));
 			} else if ((randomInt % 4) == 0) {
@@ -39,7 +35,7 @@ public class AnagramCheck {
 	}
 
 	private static void getAnagramGroupCount(List<String> stringList) {
-		System.out.println(stringList);
+		Utility.printArrayElements("Original Array", stringList.toArray());
 		Map<String, List<String>> characterSetStrings = new HashMap<>();
 		for (String element : stringList) {
 			String characterSetString = AnagramCheck.prepareCharacterSet(element);
@@ -48,9 +44,9 @@ public class AnagramCheck {
 			characterSetStrings.put(characterSetString, groupList);
 		}
 		for (List<String> groupList : characterSetStrings.values()) {
-			System.out.println(groupList);
+			Utility.printArrayElements("Group ", groupList.toArray());
 		}
-		System.out.println("Total String : " + stringList.size() + ", Total Groups : " + characterSetStrings.size());
+		System.out.println("\nTotal String : " + stringList.size() + ", Total Groups : " + characterSetStrings.size());
 	}
 
 	public static void main(String[] args) {
@@ -71,21 +67,11 @@ public class AnagramCheck {
 		return sb.toString();
 	}
 
-	private static String prepareStringFromCharacterArray(List<Character> listOfCharacters) {
-		StringBuilder stringBuilder = new StringBuilder();
-		Character[] characterArray = {};
-		characterArray = listOfCharacters.toArray(characterArray);
-		for (Character character : characterArray) {
-			stringBuilder.append(character);
-		}
-		return stringBuilder.toString();
-	}
-
 	private static void randomizeString(List<Character> listOfCharacters, Set<String> returnValue, int randomLimit) {
 		int randomInt = new Random().nextInt(1, randomLimit);
 		for (int index = 0; index < randomInt; index++) {
 			Collections.shuffle(listOfCharacters);
-			returnValue.add(AnagramCheck.prepareStringFromCharacterArray(listOfCharacters));
+			returnValue.add(Utility.prepareStringFromCharacterArray(listOfCharacters));
 		}
 	}
 }

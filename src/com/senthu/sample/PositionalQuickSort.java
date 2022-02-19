@@ -7,21 +7,14 @@ public class PositionalQuickSort {
 	public static void main(String[] args) {
 		int[] arrayElements = Utility.generateRandomIntArray(10, 20, 10, 99);
 		int arraySize = arrayElements.length;
-		System.out.println("Before Quick Sort");
-		Utility.printArrayElements(arrayElements);
-
+		Utility.printArrayElements("Before Quick Sort", arrayElements);
 		int start = PositionalQuickSort.ODD_POSITION_SORT ? 0 : 1;
 		int end = arraySize - 1;
-		if (PositionalQuickSort.ODD_POSITION_SORT) {
-			if ((arraySize % 2) == 0) {
-				end--;
-			}
-		} else if ((arraySize % 2) != 0) {
+		if ((PositionalQuickSort.ODD_POSITION_SORT && ((arraySize % 2) == 0)) || ((arraySize % 2) != 0)) {
 			end--;
 		}
 		PositionalQuickSort.quickSort(arrayElements, start, end);
-		System.out.println("\nAfter Quick Sort");
-		Utility.printArrayElements(arrayElements);
+		Utility.printArrayElements("After Quick Sort", arrayElements);
 	}
 
 	public static void quickSort(int[] arrayElements, int startOfArray, int endOfArray) {

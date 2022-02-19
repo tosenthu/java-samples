@@ -8,8 +8,8 @@ public class FindMinMove {
 		int index = 0;
 		int[] newArray = array.clone();
 		Arrays.sort(array);
-		Utility.printArrayElements(newArray);
-		Utility.printArrayElements(array);
+		Utility.printArrayElements("Orignal Array", newArray);
+		Utility.printArrayElements("Sorted Array", array);
 		for (int element : newArray) {
 			if (element == array[index]) {
 				index++;
@@ -19,7 +19,7 @@ public class FindMinMove {
 	}
 
 	public static void main(String[] args) {
-		
+
 		for (int i = 0; i < 10; i++) {
 			System.out.println("\n");
 			System.out.println(FindMinMove.findMinMove(Utility.generateRandomIntArray(5, 30, 1, 100)));

@@ -1,6 +1,8 @@
 package com.senthu.sample;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Utility {
@@ -21,15 +23,38 @@ public class Utility {
 				.boxed().toArray(Integer[]::new);
 	}
 
-	public static void printArrayElements(int[] arrayElements) {
-		Utility.printArrayElements(arrayElements, 0, arrayElements.length);
+	public static List<Character> generateString(int sizeStartValue, int sizeEndValue) {
+		List<Character> finalString = new ArrayList<>();
+		for (int element : new Random().ints(new Random().nextInt(sizeStartValue, sizeEndValue), 97, 122).toArray()) {
+			finalString.add((char) element);
+		}
+		return finalString;
 	}
 
-	public static void printArrayElements(int[] arrayElements, int start, int end) {
-		for (int index = start; index < end; index++) {
-			System.out.print(arrayElements[index] + " ");
+	public static String prepareStringFromCharacterArray(List<Character> listOfCharacters) {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Character character : listOfCharacters) {
+			stringBuilder.append(character);
 		}
-		System.out.println("\n");
+		return stringBuilder.toString();
+	}
+
+	public static void printArrayElements(String message, int[] arrayElements) {
+		Utility.printArrayElements(message, arrayElements, 0, arrayElements.length);
+	}
+
+	public static void printArrayElements(String message, int[] arrayElements, int start, int end) {
+		System.out.println("\n" + message);
+		System.out.println(Arrays.toString(arrayElements));
+	}
+
+	public static void printArrayElements(String message, Object[] arrayElements) {
+		Utility.printArrayElements(message, arrayElements, 0, arrayElements.length);
+	}
+
+	public static void printArrayElements(String message, Object[] arrayElements, int start, int end) {
+		System.out.println("\n" + message);
+		System.out.println(Arrays.toString(arrayElements));
 	}
 
 	public static void swap(int[] arrayElements, int start, int end) {
@@ -37,4 +62,5 @@ public class Utility {
 		arrayElements[start] = arrayElements[end];
 		arrayElements[end] = temp;
 	}
+
 }

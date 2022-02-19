@@ -31,7 +31,8 @@ public class DuplicateTest {
 				}
 			}
 		}
-		System.out.println(resultList);
+		Utility.printArrayElements("Original Array", originalArray);
+		Utility.printArrayElements("Duplicate Removed Array", resultList.toArray());
 	}
 
 }
