@@ -10,7 +10,7 @@ public class PositionalQuickSort {
 		Utility.printArrayElements("Before Quick Sort", arrayElements);
 		int start = PositionalQuickSort.ODD_POSITION_SORT ? 0 : 1;
 		int end = arraySize - 1;
-		if ((PositionalQuickSort.ODD_POSITION_SORT && ((arraySize % 2) == 0)) || ((arraySize % 2) != 0)) {
+		if (PositionalQuickSort.ODD_POSITION_SORT == ((arraySize % 2) == 0)) {
 			end--;
 		}
 		System.out.println("");
@@ -24,13 +24,12 @@ public class PositionalQuickSort {
 		int leftIndex = startOfArray;
 		int rightIndex = endOfArray;
 		int middlePosition = ((((endOfArray / step) - (startOfArray / step)) / 2) * step) + startOfArray;
-		System.out.println("Start : " + startOfArray + ", End : " + endOfArray + ", Middle :" + middlePosition);
 		int middleElement = arrayElements[middlePosition];
 		do {
-			while (arrayElements[leftIndex] < middleElement) {
+			while (((leftIndex + step) <= endOfArray) && (arrayElements[leftIndex] < middleElement)) {
 				leftIndex += step;
 			}
-			while (arrayElements[rightIndex] > middleElement) {
+			while (((rightIndex - step) >= startOfArray) && (arrayElements[rightIndex] > middleElement)) {
 				rightIndex -= step;
 			}
 			if (leftIndex <= rightIndex) {
@@ -39,6 +38,8 @@ public class PositionalQuickSort {
 				rightIndex -= step;
 			}
 		} while (leftIndex <= rightIndex);
+		System.out.println("Start : " + startOfArray + ", End : " + endOfArray + ", Middle :" + middlePosition
+				+ ", Left : " + leftIndex + ", Right : " + rightIndex);
 		if (startOfArray < rightIndex) {
 			PositionalQuickSort.quickSort(arrayElements, startOfArray, rightIndex);
 		}
