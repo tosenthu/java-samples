@@ -2,7 +2,7 @@ package com.senthu.sample;
 
 public class PositionalQuickSort {
 
-	public static final Boolean ODD_POSITION_SORT = false;
+	public static final Boolean ODD_POSITION_SORT = true;
 
 	public static void main(String[] args) {
 		int[] arrayElements = Utility.generateRandomIntArray(10, 20, 10, 99);
