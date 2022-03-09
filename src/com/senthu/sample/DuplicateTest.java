@@ -18,7 +18,7 @@ public class DuplicateTest {
 		for (int i = 0; i < new Random().nextInt(3, 10); i++) {
 			preparedStringArray.add(Utility.prepareStringFromCharacterArray(Utility.generateString(3, 5)));
 		}
-		
+
 		for (int i = 0; i < new Random().nextInt(3, 20); i++) {
 			preparedStringArray.add(Utility.prepareStringFromCharacterArray(Utility.generateString(5, 7)));
 		}

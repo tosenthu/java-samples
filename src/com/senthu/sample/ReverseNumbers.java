@@ -11,21 +11,23 @@ public class ReverseNumbers {
 	public static void main(String[] args) {
 
 		for (int i = 0; i < 20; i++) {
-			long originalLong = new Random().nextLong(99999l, 99999999l);
+			long originalLong = new Random().nextLong(99999L, 99999999L);
 			String originalValueInString = String.valueOf(originalLong);
-			String reverseedValueInString = String.valueOf(reverseInteger(originalLong));
+			String reverseedValueInString = String.valueOf(ReverseNumbers.reverseInteger(originalLong));
 			System.out.println("\nOriginal : " + originalValueInString + ", Reveresed : " + reverseedValueInString
-					+ ", Is Reversed : " + isReversed(originalValueInString, reverseedValueInString));
+					+ ", Is Reversed : " + ReverseNumbers.isReversed(originalValueInString, reverseedValueInString));
 
 			double doubleValue = new Random().nextDouble(9999.999999d, 99999999.99999999d);
 			String originalValueFormattedString = BigDecimal.valueOf(doubleValue).toPlainString();
-			String reversedValueFormattedString = reverseDecimalBigDecimalWay(doubleValue).toPlainString();
+			String reversedValueFormattedString = ReverseNumbers.reverseDecimalBigDecimalWay(doubleValue)
+					.toPlainString();
 			System.out.println("Original : " + originalValueFormattedString + ", Reversed : "
 					+ reversedValueFormattedString + ", Is Reversed : "
-					+ isReversed(originalValueFormattedString, reversedValueFormattedString));
+					+ ReverseNumbers.isReversed(originalValueFormattedString, reversedValueFormattedString));
 		}
 	}
 
+	// Failing test 30674036.001488812
 	private static BigDecimal reverseDecimalBigDecimalWay(double doubleValue) {
 		BigDecimal originalDoubleValue = BigDecimal.valueOf(doubleValue);
 		long originalIntegerPart = originalDoubleValue.longValue(), actualIntegerPart = originalIntegerPart;
@@ -43,8 +45,8 @@ public class ReverseNumbers {
 		}
 
 		BigDecimal resultDouble = BigDecimal
-				.valueOf(reverseInteger(originalDoubleValue.longValue() - actualIntegerPart));
-		BigDecimal dividedReversedIntegerPart = BigDecimal.valueOf(reverseInteger(originalIntegerPart))
+				.valueOf(ReverseNumbers.reverseInteger(originalDoubleValue.longValue() - actualIntegerPart));
+		BigDecimal dividedReversedIntegerPart = BigDecimal.valueOf(ReverseNumbers.reverseInteger(originalIntegerPart))
 				.divide(BigDecimal.valueOf(integerPartDivisor));
 		resultDouble = resultDouble.add(dividedReversedIntegerPart);
 		return resultDouble;
@@ -54,7 +56,7 @@ public class ReverseNumbers {
 		long temp = original;
 		long result = 0;
 		while (temp > 0) {
-			result = result * 10 + (temp % 10);
+			result = (result * 10) + (temp % 10);
 			temp /= 10;
 		}
 		return result;

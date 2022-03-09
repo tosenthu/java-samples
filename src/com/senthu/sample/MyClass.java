@@ -7,14 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 
 // Deep Immutable
-// Lock and synchronized 
+// Lock and synchronized
 public class MyClass {
 
 	private static class Department {
 		private Integer id;
 
 		public Integer getId() {
-			return id;
+			return this.id;
 		}
 
 		public void setId(Integer id) {
@@ -28,35 +28,38 @@ public class MyClass {
 		private Department d;
 
 		private Employee() {
-			
+
 		}
-		
-		
 
 		public Employee(Integer id, String name) {
-			
+
 			this();
 			this.setId(id);
 			this.setName(name);
-			
+
 			synchronized (name) {
 			}
 		}
 
-		public String getName() {
-			return name;
+		@Override
+		protected Object clone() throws CloneNotSupportedException {
+			return this;
 		}
 
-		private void setName(String name) {
-			this.name = name;
+		@Override
+		public boolean equals(Object obj) {
+			if (!(obj instanceof Employee otherEmployee)) {
+				return false;
+			}
+			return this.getId().equals(otherEmployee.getId()) && this.getName().equals(otherEmployee.getName());
 		}
 
 		public Integer getId() {
-			return id;
+			return this.id;
 		}
 
-		private void setId(Integer id) {
-			this.id = id;
+		public String getName() {
+			return this.name;
 		}
 
 		@Override
@@ -64,23 +67,17 @@ public class MyClass {
 			return this.getId().hashCode() + this.getName().hashCode();
 		}
 
-		@Override
-		public boolean equals(Object obj) {
-			if (!(obj instanceof Employee)) {
-				return false;
-			}
-			Employee otherEmployee = (Employee) obj;
-			return this.getId().equals(otherEmployee.getId()) && this.getName().equals(otherEmployee.getName());
+		private void setId(Integer id) {
+			this.id = id;
 		}
-		
-		@Override
-		protected Object clone() throws CloneNotSupportedException {
-			return this;
+
+		private void setName(String name) {
+			this.name = name;
 		}
 	}
 
 	public static void main(String[] args) {
-		
+
 		Employee e1 = new MyClass.Employee(1, "Senthil");
 		Employee e2 = new MyClass.Employee(2, "Kumar");
 		Employee e3 = new MyClass.Employee(1, "Senthil");
@@ -90,7 +87,7 @@ public class MyClass {
 		map.put(e2, e2.getName());
 		map.put(e3, "sample");
 		String s = "sample";
-		String s1 = new String("sample");
+		String s1 = "sample";
 
 		if (s == s1) {
 			System.out.println("zero Same");
@@ -118,10 +115,12 @@ public class MyClass {
 		Collections.sort(list, new Comparator<Employee>() {
 			@Override
 			public int compare(Employee o1, Employee o2) {
-				if (o1 == null)
+				if (o1 == null) {
 					return 1;
-				if (o2 == null)
+				}
+				if (o2 == null) {
 					return -1;
+				}
 				return o1.getName().compareTo(o2.getName());
 			}
 		});

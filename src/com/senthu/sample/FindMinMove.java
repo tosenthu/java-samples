@@ -21,7 +21,8 @@ public class FindMinMove {
 	public static void main(String[] args) {
 
 		for (int i = 0; i < 10; i++) {
-			System.out.println("\nTotal Moves : " + FindMinMove.findMinMove(Utility.generateRandomIntArray(5, 30, 1, 100)));
+			System.out.println(
+					"\nTotal Moves : " + FindMinMove.findMinMove(Utility.generateRandomIntArray(5, 30, 1, 100)));
 		}
 	}
 }
