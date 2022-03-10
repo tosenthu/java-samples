@@ -10,7 +10,7 @@ public class ReverseNumbers {
 
 	public static void main(String[] args) {
 
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 10; i++) {
 			long originalLong = new Random().nextLong(99999L, 99999999L);
 			String originalValueInString = String.valueOf(originalLong);
 			String reverseedValueInString = String.valueOf(ReverseNumbers.reverseInteger(originalLong));
@@ -27,29 +27,20 @@ public class ReverseNumbers {
 		}
 	}
 
-	// Failing test 30674036.001488812
 	private static BigDecimal reverseDecimalBigDecimalWay(double doubleValue) {
 		BigDecimal originalDoubleValue = BigDecimal.valueOf(doubleValue);
 		long originalIntegerPart = originalDoubleValue.longValue(), actualIntegerPart = originalIntegerPart;
-
-		while (originalDoubleValue.remainder(BigDecimal.valueOf(originalDoubleValue.longValue()))
-				.compareTo(BigDecimal.ZERO) > 0) {
-			originalDoubleValue = originalDoubleValue.multiply(new BigDecimal(10.0));
-			actualIntegerPart *= 10;
+		long reversedUnscaledValue = reverseInteger(originalDoubleValue.unscaledValue().longValue());
+		BigDecimal result = new BigDecimal(0);
+		while (actualIntegerPart > 0) {
+			long lastDigit = reversedUnscaledValue % 10;
+			actualIntegerPart /= 10;
+			reversedUnscaledValue /= 10;
+			result = result.divide(BigDecimal.TEN);
+			result = result.add(BigDecimal.valueOf(lastDigit).divide(BigDecimal.TEN));
 		}
-
-		long integerPartDivisor = 1, tempActualIntegerPart = originalIntegerPart;
-		while (tempActualIntegerPart > 0) {
-			integerPartDivisor *= 10;
-			tempActualIntegerPart /= 10;
-		}
-
-		BigDecimal resultDouble = BigDecimal
-				.valueOf(ReverseNumbers.reverseInteger(originalDoubleValue.longValue() - actualIntegerPart));
-		BigDecimal dividedReversedIntegerPart = BigDecimal.valueOf(ReverseNumbers.reverseInteger(originalIntegerPart))
-				.divide(BigDecimal.valueOf(integerPartDivisor));
-		resultDouble = resultDouble.add(dividedReversedIntegerPart);
-		return resultDouble;
+		result = result.add(BigDecimal.valueOf(reversedUnscaledValue));
+		return result;
 	}
 
 	private static long reverseInteger(long original) {
