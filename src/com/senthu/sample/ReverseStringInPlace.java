@@ -3,15 +3,23 @@ package com.senthu.sample;
 public class ReverseStringInPlace {
 
 	public static void main(String[] args) {
-		String bigString = "  The   Quick  Brown   Fox  Jumps   Over   THE  LaZy   dOg  ";
-		String smallString = "  Senthil   Kumar   M   R    ";
-		System.out.println(ReverseStringInPlace.reverseStringInPlace(bigString));
-		System.out.println(ReverseStringInPlace.reverseStringInPlace(smallString));
-		System.out.println(ReverseStringInPlace.reverseEachStringInPlace(bigString));
-		System.out.println(ReverseStringInPlace.reverseEachStringInPlace(smallString));
+		String[] inputStrings = { "The   Quick  Brown   Fox  Jumps   Over   THE  LaZy   dOg",
+				"Eclipse IDE for Enterprise Java and Web Developers", "Senthil   Kumar   M   R" };
+
+		for (String inputString : inputStrings) {
+			System.out.println(ReverseStringInPlace.reverseAllCharacters(inputString));
+			System.out.println(ReverseStringInPlace.reverseCharactersOfWords(inputString));
+			System.out.println(ReverseStringInPlace.reverseWords(inputString));
+		}
 	}
 
-	private static String reverseEachStringInPlace(String sentence) {
+	private static String reverseAllCharacters(String s) {
+		char[] characterArray = s.toCharArray();
+		ReverseStringInPlace.reverseInPlace(characterArray, 0, characterArray.length);
+		return new String(characterArray);
+	}
+
+	private static String reverseCharactersOfWords(String sentence) {
 
 		int lastSpaceIndex = 0;
 		int currentSpaceIndex = -1;
@@ -40,16 +48,16 @@ public class ReverseStringInPlace {
 		for (int i = 0; i < mid; i++) {
 			char temp = characterArray[endIndex];
 			characterArray[endIndex] = characterArray[startIndex];
-			endIndex--;
 			characterArray[startIndex] = temp;
+			endIndex--;
 			startIndex++;
 		}
 	}
 
-	private static String reverseStringInPlace(String s) {
-		char[] characterArray = s.toCharArray();
-
+	private static String reverseWords(String string) {
+		char[] characterArray = string.toCharArray();
 		ReverseStringInPlace.reverseInPlace(characterArray, 0, characterArray.length);
-		return new String(characterArray);
+		String fullReversedString = new String(characterArray);
+		return ReverseStringInPlace.reverseCharactersOfWords(fullReversedString);
 	}
 }

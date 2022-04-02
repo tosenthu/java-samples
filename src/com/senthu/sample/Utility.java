@@ -31,6 +31,17 @@ public class Utility {
 		return finalString;
 	}
 
+	public static int[][] prepareMatrix(int rows) {
+		int[][] returnValue = new int[rows][rows];
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < rows; j++) {
+				returnValue[i][j] = (((i + 1) * rows) + (j + 1)) - rows;
+			}
+		}
+		return returnValue;
+	}
+
 	public static String prepareStringFromCharacterArray(List<Character> listOfCharacters) {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Character character : listOfCharacters) {
@@ -55,6 +66,18 @@ public class Utility {
 	public static void printArrayElements(String message, Object[] arrayElements, int start, int end) {
 		System.out.println("\n" + message);
 		System.out.println(Arrays.toString(arrayElements));
+	}
+
+	public static void printMatrix(int[][] matrix) {
+		int rowsCount = matrix.length;
+		int columnsCount = matrix[0].length;
+		for (int i = 0; i < rowsCount; i++) {
+			for (int j = 0; j < columnsCount; j++) {
+				System.out.printf("%5d", matrix[i][j]);
+			}
+			System.out.println("");
+		}
+		System.out.println("");
 	}
 
 	public static void swap(int[] arrayElements, int start, int end) {
