@@ -6,6 +6,18 @@ import java.util.List;
 import java.util.Random;
 
 public class Utility {
+	private static void fillColumnWithPipe(char[][] matrix, int columnToFill, int totalColumns) {
+		for (int i = 0; i < totalColumns; i++) {
+			matrix[i][columnToFill] = '#';
+		}
+	}
+
+	private static void fillRowWithHyphen(char[][] matrix, int rowToFill, int totalRows) {
+		for (int i = 0; i < totalRows; i++) {
+			matrix[rowToFill][i] = '+';
+		}
+	}
+
 	public static int[] generateRandomIntArray(int sizeStartValue, int sizeEndValue, int rangeStartValue,
 			int rangeEndValue) {
 		int arraySize = new Random().nextInt(sizeStartValue, sizeEndValue);
@@ -14,6 +26,10 @@ public class Utility {
 			arrayElements[i] = new Random().nextInt(rangeStartValue, rangeEndValue);
 		}
 		return arrayElements;
+	}
+
+	public static int generateRandomInteger(int range, int limit) {
+		return new Random().nextInt(range, limit);
 	}
 
 	public static Integer[] generateRandomIntegerArray(int sizeStartValue, int sizeEndValue, int rangeStartValue,
@@ -31,14 +47,34 @@ public class Utility {
 		return finalString;
 	}
 
-	public static int[][] prepareMatrix(int rows) {
-		int[][] returnValue = new int[rows][rows];
+	public static char[][] prepareMatrix(int rows) {
+		char[][] returnValue = new char[rows][rows];
 
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < rows; j++) {
-				returnValue[i][j] = (((i + 1) * rows) + (j + 1)) - rows;
+				if (i > (rows / 2)) {
+					returnValue[i][j] = '~';
+					if (j > (rows / 2)) {
+						returnValue[i][j] = '=';
+					}
+				} else {
+					returnValue[i][j] = '*';
+					if (j > (rows / 2)) {
+						returnValue[i][j] = '-';
+					}
+				}
 			}
 		}
+
+		if ((rows % 2) == 0) {
+			Utility.fillRowWithHyphen(returnValue, (rows / 2) - 1, rows);
+		}
+		Utility.fillRowWithHyphen(returnValue, rows / 2, rows);
+
+		if ((rows % 2) == 0) {
+			Utility.fillColumnWithPipe(returnValue, (rows / 2) - 1, rows);
+		}
+		Utility.fillColumnWithPipe(returnValue, rows / 2, rows);
 		return returnValue;
 	}
 
@@ -68,12 +104,12 @@ public class Utility {
 		System.out.println(Arrays.toString(arrayElements));
 	}
 
-	public static void printMatrix(int[][] matrix) {
+	public static void printMatrix(char[][] matrix) {
 		int rowsCount = matrix.length;
 		int columnsCount = matrix[0].length;
 		for (int i = 0; i < rowsCount; i++) {
 			for (int j = 0; j < columnsCount; j++) {
-				System.out.printf("%5d", matrix[i][j]);
+				System.out.printf("%3c", matrix[i][j]);
 			}
 			System.out.println("");
 		}
@@ -86,4 +122,15 @@ public class Utility {
 		arrayElements[end] = temp;
 	}
 
+	public static void transposeMatrix(char[][] matrix) {
+		int rowCount = matrix.length;
+		int columnCount = matrix[0].length;
+		for (int i = 0; i < rowCount; i++) {
+			for (int j = i; j < columnCount; j++) {
+				char temp = matrix[i][j];
+				matrix[i][j] = matrix[j][i];
+				matrix[j][i] = temp;
+			}
+		}
+	}
 }
