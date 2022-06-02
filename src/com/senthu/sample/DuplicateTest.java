@@ -12,17 +12,17 @@ public class DuplicateTest {
 	public static void main(String[] args) {
 
 		List<String> preparedStringArray = new ArrayList<String>();
-		for (int i = 0; i < new Random().nextInt(3, 20); i++) {
+		for (int i = 0; i < Utility.nextInt(3, 20); i++) {
 			preparedStringArray.add(Utility.prepareStringFromCharacterArray(Utility.generateString(2, 3)));
 		}
-		for (int i = 0; i < new Random().nextInt(3, 10); i++) {
+		for (int i = 0; i < Utility.nextInt(3, 10); i++) {
 			preparedStringArray.add(Utility.prepareStringFromCharacterArray(Utility.generateString(3, 5)));
 		}
 
-		for (int i = 0; i < new Random().nextInt(3, 20); i++) {
+		for (int i = 0; i < Utility.nextInt(3, 20); i++) {
 			preparedStringArray.add(Utility.prepareStringFromCharacterArray(Utility.generateString(5, 7)));
 		}
-		for (int i = 0; i < new Random().nextInt(3, 20); i++) {
+		for (int i = 0; i < Utility.nextInt(3, 20); i++) {
 			preparedStringArray.add(Utility.prepareStringFromCharacterArray(Utility.generateString(7, 10)));
 		}
 

@@ -87,13 +87,13 @@ class IPv4Address {
 public class SiteFinder {
 
 	public static String generateRandomIPAddress() {
-		return String.format("%d.%d.%d.%d", new Random().nextInt(1, 255), new Random().nextInt(1, 255),
-				new Random().nextInt(1, 255), new Random().nextInt(1, 255));
+		return String.format("%d.%d.%d.%d", new Random().nextInt(255), new Random().nextInt(255),
+				new Random().nextInt(255), new Random().nextInt(255));
 	}
 
 	public static String generateRandomSubnet() {
-		return String.format("%d.%d.%d.%d/%d", new Random().nextInt(1, 255), new Random().nextInt(1, 255),
-				new Random().nextInt(1, 255), new Random().nextInt(1, 255), new Random().nextInt(1, 4) * 8);
+		return String.format("%d.%d.%d.%d/%d", new Random().nextInt(255), new Random().nextInt(255),
+				new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(4) * 8);
 	}
 
 	public static void main(String[] args) {
@@ -103,7 +103,7 @@ public class SiteFinder {
 		for (int i = 0; i < 200; i++) {
 			String siteName = String.format("Site-%04d", (i + 1));
 			Set<String> subnetPerSite = new HashSet<>();
-			for (int j = 0; j < new Random().nextInt(10, 1000); j++) {
+			for (int j = 0; j < new Random().nextInt(1000); j++) {
 				String subnet = SiteFinder.generateRandomSubnet();
 				if (!allSubnets.contains(subnet)) {
 					subnetPerSite.add(subnet);
@@ -129,7 +129,7 @@ public class SiteFinder {
 			}
 		}
 
-		for (int i = 0; i < new Random().nextInt(50, 100); i++) {
+		for (int i = 0; i < new Random().nextInt(100); i++) {
 			String generatedIPAddress = SiteFinder.generateRandomIPAddress();
 			IPv4Address ipAddress = new IPv4Address(generatedIPAddress);
 			String subnet8IP = String.format("%03d%03d%03d%03d", ipAddress.getOctet1(), 0, 0, 0);
