@@ -20,16 +20,27 @@ public class Utility {
 
 	public static int[] generateRandomIntArray(int sizeStartValue, int sizeEndValue, int rangeStartValue,
 			int rangeEndValue) {
-		int arraySize = new Random().nextInt(sizeStartValue, sizeEndValue);
+		int arraySize = Utility.nextInt(sizeStartValue, sizeEndValue);
 		int[] arrayElements = new int[arraySize];
 		for (int i = 0; i < arraySize; i++) {
-			arrayElements[i] = new Random().nextInt(rangeStartValue, rangeEndValue);
+			arrayElements[i] = Utility.nextInt(rangeStartValue, rangeEndValue);
 		}
 		return arrayElements;
 	}
 
+	public static int nextInt(int min, int max) {
+		return new Random().nextInt((max - min) + 1) + min;
+	}
+
+	public static long nextLong(long min, long max) {
+		return min + new Random().nextLong() * max;
+	}
+
+	public static double nextDouble(double min, double max) {
+		return min + new Random().nextDouble() * max;
+	}
 	public static int generateRandomInteger(int range, int limit) {
-		return new Random().nextInt(range, limit);
+		return Utility.nextInt(range, limit);
 	}
 
 	public static Integer[] generateRandomIntegerArray(int sizeStartValue, int sizeEndValue, int rangeStartValue,
@@ -41,7 +52,7 @@ public class Utility {
 
 	public static List<Character> generateString(int sizeStartValue, int sizeEndValue) {
 		List<Character> finalString = new ArrayList<>();
-		for (int element : new Random().ints(new Random().nextInt(sizeStartValue, sizeEndValue), 97, 122).toArray()) {
+		for (int element : new Random().ints(Utility.nextInt(sizeStartValue, sizeEndValue), 97, 122).toArray()) {
 			finalString.add((char) element);
 		}
 		return finalString;

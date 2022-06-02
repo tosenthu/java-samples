@@ -48,9 +48,10 @@ public class MyClass {
 
 		@Override
 		public boolean equals(Object obj) {
-			if (!(obj instanceof Employee otherEmployee)) {
+			if (!(obj instanceof Employee)) {
 				return false;
 			}
+			Employee otherEmployee = (Employee) obj;
 			return this.getId().equals(otherEmployee.getId()) && this.getName().equals(otherEmployee.getName());
 		}
 

@@ -7,11 +7,11 @@ public class ReverseNumbers {
 	public static void main(String[] args) {
 
 		for (int i = 0; i < 10; i++) {
-			long originalLong = new Random().nextLong(99999L, 99999999L);
+			long originalLong = Utility.nextLong(99999L, 99999999L);
 			System.out.println("\nOriginal : " + String.valueOf(originalLong) + ", Reveresed : "
 					+ String.valueOf(ReverseNumbers.reverseInteger(originalLong)));
 
-			double doubleValue = new Random().nextDouble(9999.999999d, 99999999.99999999d);
+			double doubleValue = Utility.nextDouble(9999.999999d, 99999999.99999999d);
 			System.out.println("Original : " + BigDecimal.valueOf(doubleValue).toPlainString() + ", Reversed : "
 					+ ReverseNumbers.reverseDecimalBigDecimalWay(doubleValue).toPlainString());
 		}
